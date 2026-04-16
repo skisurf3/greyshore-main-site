@@ -311,30 +311,13 @@
     }
 
     .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .nav-logo-mark {
-      width: 32px;
-      height: 32px;
-      background: #ffffff;
-      color: #000;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    .nav-logo-text {
       font-family: var(--font-body);
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 800;
       color: var(--text);
-      letter-spacing: -0.01em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     .nav-center {
@@ -1656,10 +1639,7 @@
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-mark">GS</div>
-        <span class="nav-logo-text">Grey Shore</span>
-      </a>
+      <a href="#" class="nav-logo">Grey Shore Systems</a>
       <div class="nav-center">
         <a href="#services" class="nav-item">Services</a>
         <a href="#how" class="nav-item">Process</a>
@@ -1677,10 +1657,7 @@
 
   <div class="nav-mobile">
     <div class="nav-mobile-top">
-      <a href="#" class="nav-logo">
-        <div class="nav-logo-mark">GS</div>
-        <span class="nav-logo-text">Grey Shore</span>
-      </a>
+      <a href="#" class="nav-logo">Grey Shore Systems</a>
       <button onclick="document.querySelector('.nav-mobile').classList.remove('open')" aria-label="Close">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#fff"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
