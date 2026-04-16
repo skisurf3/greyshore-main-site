@@ -215,6 +215,73 @@
       animation-delay: 0.8s;
     }
 
+    /* Scroll cue */
+    .scroll-cue {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      opacity: 0;
+      animation: heroRise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: 1.4s;
+    }
+
+    .scroll-cue-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      color: var(--text-muted);
+      padding-left: 4px;
+      transition: color 0.2s;
+    }
+
+    .scroll-cue:hover .scroll-cue-label { color: var(--text); }
+
+    .scroll-cue-track {
+      width: 22px;
+      height: 36px;
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .scroll-cue:hover .scroll-cue-track {
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .scroll-cue-dot {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      width: 3px;
+      height: 7px;
+      border-radius: 2px;
+      background: var(--text);
+      transform: translateX(-50%);
+      animation: scrollDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes scrollDot {
+      0% { top: 6px; opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { top: 22px; opacity: 0; }
+    }
+
+    @media (max-width: 900px) {
+      .scroll-cue { bottom: 20px; }
+    }
+
     /* ══════════════ NAV ══════════════ */
     .nav {
       position: fixed;
@@ -1762,6 +1829,13 @@
         </div>
       </div>
     </div>
+
+    <a href="#services" class="scroll-cue" aria-label="Scroll to see more">
+      <span class="scroll-cue-label">Scroll</span>
+      <div class="scroll-cue-track">
+        <div class="scroll-cue-dot"></div>
+      </div>
+    </a>
   </section>
 
   <!-- TICKER -->
