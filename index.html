@@ -172,6 +172,49 @@
     }
     .fade-up.visible { opacity: 1; transform: translateY(0); }
 
+    /* Hero load-in cascade */
+    @keyframes heroRise {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroPhoneRise {
+      from { opacity: 0; transform: translateY(32px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes heroGlowIn {
+      from { opacity: 0; }
+      to { opacity: 0.18; }
+    }
+
+    .hero-badge,
+    .hero-eyebrow,
+    .hero-title,
+    .hero-sub,
+    .hero-ctas {
+      opacity: 0;
+      animation: heroRise 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    .hero-badge { animation-delay: 0.1s; }
+    .hero-eyebrow { animation-delay: 0.25s; }
+    .hero-title { animation-delay: 0.4s; }
+    .hero-sub { animation-delay: 0.55s; }
+    .hero-ctas { animation-delay: 0.7s; }
+
+    .hero-visual {
+      opacity: 0;
+      animation: heroPhoneRise 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: 0.55s;
+    }
+
+    .hero-visual-glow {
+      opacity: 0 !important;
+      animation: heroGlowIn 1.4s ease-out forwards;
+      animation-delay: 0.8s;
+    }
+
     /* ══════════════ NAV ══════════════ */
     .nav {
       position: fixed;
@@ -2262,7 +2305,7 @@
     (function() {
       var notifs = document.querySelectorAll('#iphone-feed [data-notif]');
       notifs.forEach(function(n, i) {
-        setTimeout(function() { n.classList.add('visible'); }, 600 + i * 500);
+        setTimeout(function() { n.classList.add('visible'); }, 1700 + i * 450);
       });
     })();
   </script>
