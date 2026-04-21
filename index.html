@@ -2555,10 +2555,29 @@
     document.querySelectorAll('[data-device]').forEach(function(d) { devObs.observe(d); });
 
     (function() {
-      var notifs = document.querySelectorAll('#iphone-feed [data-notif]');
-      notifs.forEach(function(n, i) {
-        setTimeout(function() { n.classList.add('visible'); }, 1700 + i * 450);
-      });
+      var feed = document.getElementById('iphone-feed');
+      if (!feed) return;
+      var notifs = feed.querySelectorAll('[data-notif]');
+      function play() {
+        notifs.forEach(function(n, i) {
+          setTimeout(function() { n.classList.add('visible'); }, 1700 + i * 450);
+        });
+      }
+      var isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!isMobile) {
+        play();
+        return;
+      }
+      var notifObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting && !feed.dataset.played) {
+            feed.dataset.played = '1';
+            play();
+            notifObs.disconnect();
+          }
+        });
+      }, { threshold: 0.4 });
+      notifObs.observe(feed);
     })();
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
