@@ -225,6 +225,21 @@
     .hero-title { animation-delay: 0.4s; }
     .hero-sub { animation-delay: 0.55s; }
     .hero-ctas { animation-delay: 0.7s; }
+    .hero-cta-note {
+      opacity: 0;
+      animation: heroRise 0.85s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      animation-delay: 0.85s;
+      margin-top: 18px;
+      max-width: 480px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.02em;
+      line-height: 1.65;
+      color: var(--text-dim);
+    }
+    @media (max-width: 760px) {
+      .hero-cta-note { margin-left: auto; margin-right: auto; text-align: center; }
+    }
 
     .hero-visual {
       opacity: 0;
@@ -303,6 +318,19 @@
 
     @media (max-width: 900px) {
       .scroll-cue { display: none; }
+    }
+
+    /* ══════════════ SCROLL PROGRESS BAR ══════════════ */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      width: 0%;
+      z-index: 200;
+      background: linear-gradient(90deg, #4fd1c5 0%, #a78bfa 35%, #f472b6 70%, #fbbc05 100%);
+      box-shadow: 0 0 12px rgba(167, 139, 250, 0.55);
+      transition: width 0.08s linear;
+      pointer-events: none;
     }
 
     /* ══════════════ NAV ══════════════ */
@@ -561,6 +589,63 @@
       .hero-badge { margin-left: auto; margin-right: auto; }
       .hero-sub { margin-left: auto; margin-right: auto; }
       .hero-ctas { align-items: center; justify-content: center; }
+    }
+
+    /* Mobile: hero text fills first viewport, iPhone reveals on scroll */
+    @media (max-width: 760px) {
+      .hero {
+        padding: 110px 20px 40px;
+      }
+      .hero-content {
+        gap: 48px;
+        align-items: stretch;
+      }
+      .hero-text-col {
+        display: flex;
+        flex-direction: column;
+        min-height: calc(100vh - 150px);
+        min-height: calc(100dvh - 150px);
+      }
+      .hero-text-col .hero-ctas { margin-top: auto; }
+      .hero-badge {
+        margin-bottom: 18px;
+        padding: 6px 14px;
+        font-size: 12px;
+      }
+      .hero-eyebrow {
+        margin-bottom: 14px;
+        font-size: 11px;
+        letter-spacing: 1.6px;
+      }
+      .hero-title {
+        margin-bottom: 16px;
+        font-size: clamp(34px, 9.5vw, 44px);
+        line-height: 1.08;
+      }
+      .hero-sub {
+        margin-bottom: 26px;
+        font-size: 15px;
+        line-height: 1.55;
+      }
+      .hero-ctas {
+        width: 100%;
+        gap: 12px;
+      }
+      .hero-ctas .btn-white {
+        width: 100%;
+        justify-content: center;
+        height: 60px;
+        font-size: 16px;
+        padding: 0 20px;
+        border-radius: 16px;
+        font-weight: 600;
+      }
+      .hero-ctas .btn-ghost { display: none; }
+      .hero-cta-note {
+        margin-top: 16px;
+        font-size: 11px;
+        line-height: 1.55;
+      }
     }
 
     .iphone {
@@ -1982,6 +2067,8 @@
 </head>
 <body>
 
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- NAV -->
   <nav class="nav">
     <div class="nav-inner">
@@ -1993,7 +2080,7 @@
         <a href="#faq" class="nav-item">FAQ</a>
       </div>
       <div class="nav-right">
-        <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="nav-cta">Book a Call</a>
+        <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="nav-cta">Book a Free Audit</a>
       </div>
       <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.add('open')" aria-label="Menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -2027,7 +2114,7 @@
       </a>
     </div>
     <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="btn-white nav-mobile-cta" style="justify-content:center">
-      Book a Call
+      Book a Free Audit
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </a>
   </div>
@@ -2047,11 +2134,12 @@
         <p class="hero-sub">We build AI systems, automated operations, and custom software. Designed around how you actually work.</p>
         <div class="hero-ctas">
           <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="btn-white">
-            Book a Discovery Call
+            Book a Free 30-Minute Audit
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </a>
           <a href="#services" class="btn-ghost">See what we build</a>
         </div>
+        <p class="hero-cta-note">Free 30-minute business audit. We map where leads, time, and revenue are leaking out. You walk away with a punch list.</p>
       </div>
 
       <div class="hero-visual">
@@ -2215,7 +2303,7 @@
           <span class="service-eyebrow eb-teal">01 / Automation</span>
           <h3 class="grad-teal">Operations on autopilot.</h3>
           <div class="service-underline ul-teal"></div>
-          <p>Custom AI that handles follow-up, intake, and client comms 24/7 &mdash; without adding headcount.</p>
+          <p>Custom AI that handles follow-up, intake, and client comms 24/7, without adding headcount.</p>
           <div class="service-tags">
             <span class="service-tag">Lead response</span>
             <span class="service-tag">Client intake</span>
@@ -2251,7 +2339,7 @@
           <span class="service-eyebrow eb-pink">03 / Software</span>
           <h3 class="grad-pink">Build what you can&rsquo;t buy.</h3>
           <div class="service-underline ul-pink"></div>
-          <p>When off-the-shelf doesn&rsquo;t cut it &mdash; built around how your team actually works.</p>
+          <p>When off-the-shelf doesn&rsquo;t cut it. Built around how your team actually works.</p>
           <div class="service-tags">
             <span class="service-tag">Client portals</span>
             <span class="service-tag">Internal tools</span>
@@ -2277,7 +2365,7 @@
         <div class="result-card">
           <div class="result-metric blue">+40%</div>
           <h3>Returning customers</h3>
-          <p>Replies handled around the clock. Patients who text after hours don&rsquo;t fall off &mdash; they get a response, get the booking link, and book.<span class="result-source">Acuity Eye Care &middot; Salem, NH</span></p>
+          <p>Replies handled around the clock. Patients who text after hours don&rsquo;t fall off. They get a response, get the booking link, and book.<span class="result-source">Acuity Eye Care &middot; Salem, NH</span></p>
         </div>
         <div class="result-card">
           <div class="metric-stack">
@@ -2290,7 +2378,7 @@
               <span class="metric-label">in new revenue</span>
             </div>
           </div>
-          <p>In the first 30 days. Automated review requests after every completed job &mdash; no manual asks.<span class="result-source">Legendary Plumbing &amp; Heating &middot; Hooksett, NH</span></p>
+          <p>In the first 30 days. Automated review requests after every completed job. No manual asks.<span class="result-source">Legendary Plumbing &amp; Heating &middot; Hooksett, NH</span></p>
         </div>
         <div class="result-card">
           <div class="result-metric money">$14,000+</div>
@@ -2668,10 +2756,10 @@
     <div class="bg-noise"></div>
     <div class="final-cta-inner">
       <h2 class="section-title fade-up">Ready to see <span class="dim">what's costing you?</span></h2>
-      <p class="section-sub fade-up">30-minute discovery call. No slides. No pressure.</p>
+      <p class="section-sub fade-up">30-minute audit. No slides. No pressure.</p>
       <div class="fade-up" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
         <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="btn-white">
-          Book a Discovery Call
+          Book a Free 30-Minute Audit
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
         <a href="#services" class="btn-ghost">See what we build</a>
@@ -2695,12 +2783,17 @@
   <!-- SCRIPTS -->
   <script>
     var nav = document.querySelector('.nav');
-    function updateNav() {
+    var progressBar = document.getElementById('scrollProgress');
+    function updateScroll() {
       if (window.scrollY > 40) nav.classList.add('scrolled');
       else nav.classList.remove('scrolled');
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      var pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      progressBar.style.width = pct + '%';
     }
-    updateNav();
-    window.addEventListener('scroll', updateNav, { passive: true });
+    updateScroll();
+    window.addEventListener('scroll', updateScroll, { passive: true });
+    window.addEventListener('resize', updateScroll, { passive: true });
 
     document.querySelectorAll('.faq-question').forEach(function(btn) {
       btn.addEventListener('click', function() {
@@ -2735,25 +2828,25 @@
       var feed = document.getElementById('iphone-feed');
       if (!feed) return;
       var notifs = feed.querySelectorAll('[data-notif]');
-      function play() {
+      var isMobile = window.matchMedia('(max-width: 768px)').matches;
+      function play(initialDelay, stagger) {
         notifs.forEach(function(n, i) {
-          setTimeout(function() { n.classList.add('visible'); }, 1700 + i * 450);
+          setTimeout(function() { n.classList.add('visible'); }, initialDelay + i * stagger);
         });
       }
-      var isMobile = window.matchMedia('(max-width: 768px)').matches;
       if (!isMobile) {
-        play();
+        play(1700, 450);
         return;
       }
       var notifObs = new IntersectionObserver(function(entries) {
         entries.forEach(function(e) {
           if (e.isIntersecting && !feed.dataset.played) {
             feed.dataset.played = '1';
-            play();
+            play(150, 200);
             notifObs.disconnect();
           }
         });
-      }, { threshold: 0.4 });
+      }, { threshold: 0.05, rootMargin: '0px 0px -10% 0px' });
       notifObs.observe(feed);
     })();
   </script>
