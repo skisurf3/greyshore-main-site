@@ -852,10 +852,13 @@
       border-radius: 20px;
       padding: 36px;
       transition: transform 0.3s, background 0.3s, border-color 0.3s;
-      display: grid;
-      grid-template-rows: subgrid;
-      grid-row: span 5;
-      row-gap: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .service-card .service-link {
+      margin-top: auto;
     }
 
     .service-card:hover {
@@ -881,12 +884,67 @@
 
     .service-icon svg { width: 22px; height: 22px; }
 
+    .service-eyebrow {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      opacity: 0.95;
+    }
+    .service-eyebrow.eb-teal { color: var(--accent); }
+    .service-eyebrow.eb-purple { color: #a78bfa; }
+    .service-eyebrow.eb-pink { color: #f472b6; }
+
     .service-card h3 {
-      font-size: 20px;
-      font-weight: 600;
+      font-size: clamp(22px, 2.2vw, 28px);
+      font-weight: 700;
       color: var(--text);
       margin-bottom: 14px;
-      letter-spacing: -0.01em;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .service-card h3.grad-teal {
+      background: linear-gradient(135deg, #7eeadf 0%, #4fd1c5 50%, #2cb1a4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 50px rgba(79, 209, 197, 0.25);
+    }
+
+    .service-card h3.grad-purple {
+      background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 50px rgba(167, 139, 250, 0.25);
+    }
+
+    .service-card h3.grad-pink {
+      background: linear-gradient(135deg, #fbcfe8 0%, #f472b6 50%, #db2777 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 50px rgba(244, 114, 182, 0.25);
+    }
+
+    .service-underline {
+      width: 36px;
+      height: 2px;
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+    .service-underline.ul-teal {
+      background: linear-gradient(90deg, #7eeadf 0%, #2cb1a4 100%);
+    }
+    .service-underline.ul-purple {
+      background: linear-gradient(90deg, #c4b5fd 0%, #7c3aed 100%);
+    }
+    .service-underline.ul-pink {
+      background: linear-gradient(90deg, #fbcfe8 0%, #db2777 100%);
     }
 
     .service-card > p {
@@ -897,29 +955,30 @@
       margin-bottom: 22px;
     }
 
-    .service-bullets {
-      list-style: none;
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-bottom: 26px;
     }
 
-    .service-bullets li {
-      font-size: 13px;
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 500;
       color: var(--text-secondary);
-      padding: 5px 0;
-      padding-left: 18px;
-      position: relative;
-      line-height: 1.5;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      letter-spacing: -0.005em;
+      line-height: 1;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
     }
 
-    .service-bullets li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 13px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
+    .service-card:hover .service-tag {
+      border-color: rgba(79, 209, 197, 0.25);
     }
 
     .service-link {
@@ -1414,39 +1473,142 @@
     }
 
     .result-card {
-      background: var(--surface);
+      position: relative;
+      background: linear-gradient(180deg, rgba(79,209,197,0.06) 0%, var(--surface) 70%);
       border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 36px;
+      border-radius: 24px;
+      padding: 44px 36px 36px;
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
+    .result-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%);
+      opacity: 0.6;
+    }
+
+    .result-card::after {
+      content: "";
+      position: absolute;
+      top: -40%; right: -30%;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+      opacity: 0.35;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .result-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(79, 209, 197, 0.45);
+      box-shadow: 0 24px 60px -20px rgba(79, 209, 197, 0.25);
+    }
+
+    .result-card:hover::after { opacity: 0.6; }
+
     .result-metric {
+      position: relative;
+      z-index: 1;
       font-family: var(--font-mono);
-      font-size: clamp(34px, 4.5vw, 48px);
+      font-size: clamp(40px, 4.6vw, 60px);
       font-weight: 700;
       color: var(--text);
-      margin-bottom: 14px;
-      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
       background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px rgba(79, 209, 197, 0.15);
+    }
+
+    .result-metric.money {
+      background: linear-gradient(135deg, #b9f6ca 0%, #00e676 50%, #00b85a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px rgba(0, 230, 118, 0.25);
+    }
+
+    .result-metric.gold {
+      background: linear-gradient(135deg, #fde293 0%, #fbbc05 50%, #f9a825 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px rgba(251, 188, 5, 0.28);
+    }
+
+    .result-metric.blue {
+      background: linear-gradient(135deg, #cfe7ff 0%, #4f9cf9 50%, #1a73e8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px rgba(79, 156, 249, 0.28);
+    }
+
+    .metric-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .metric-stack .result-metric {
+      margin-bottom: 0;
+      font-size: clamp(32px, 3.6vw, 46px);
+    }
+
+    .metric-row .metric-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: -0.005em;
     }
 
     .result-card h3 {
-      font-size: 15px;
+      position: relative;
+      z-index: 1;
+      font-size: 17px;
       font-weight: 600;
       color: var(--text);
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
     }
 
     .result-card p {
+      position: relative;
+      z-index: 1;
       font-size: 13px;
       font-weight: 400;
       color: var(--text-muted);
       line-height: 1.7;
-      padding-top: 18px;
+      padding-top: 20px;
       border-top: 1px solid var(--border);
+    }
+
+    .result-source {
+      display: block;
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      opacity: 0.85;
     }
 
     @media (max-width: 900px) {
@@ -2050,49 +2212,90 @@
           <div class="service-icon si-teal">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
           </div>
-          <h3>AI Agents + Operations Automation</h3>
-          <p>Custom AI systems that handle follow-up, intake, scheduling, internal ops, and client communication. They plug into your existing tools and run 24/7 without adding headcount.</p>
-          <ul class="service-bullets">
-            <li>Lead response and follow-up in under 2 minutes</li>
-            <li>Client intake and onboarding sequences</li>
-            <li>CRM automation and multi-tool sync</li>
-            <li>AI-powered SMS and email agents</li>
-            <li>Review generation and reputation systems</li>
-            <li>Custom dashboards and reporting</li>
-          </ul>
+          <span class="service-eyebrow eb-teal">01 / Automation</span>
+          <h3 class="grad-teal">Operations on autopilot.</h3>
+          <div class="service-underline ul-teal"></div>
+          <p>Custom AI that handles follow-up, intake, and client comms 24/7 &mdash; without adding headcount.</p>
+          <div class="service-tags">
+            <span class="service-tag">Lead response</span>
+            <span class="service-tag">Client intake</span>
+            <span class="service-tag">CRM sync</span>
+            <span class="service-tag">SMS &amp; email agents</span>
+            <span class="service-tag">Review systems</span>
+            <span class="service-tag">Dashboards</span>
+          </div>
           <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="service-link">Talk about your operations &rarr;</a>
         </div>
         <div class="service-card">
           <div class="service-icon si-purple">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><polyline points="8 11 11 14 14 8"/></svg>
           </div>
-          <h3>AI Search + Google Visibility</h3>
-          <p>When someone asks ChatGPT, Claude, or Google for what you do, your business shows up by name. We build the files, structure, and pages that make AI recommend you.</p>
-          <ul class="service-bullets">
-            <li>llms.txt and structured data for AI recommendations</li>
-            <li>Markdown mirrors for clean AI page reading</li>
-            <li>Location and service pages that rank</li>
-            <li>Schema markup and FAQ optimization</li>
-            <li>Google Search Console setup and monitoring</li>
-            <li>Ongoing ranking reports and iteration</li>
-          </ul>
+          <span class="service-eyebrow eb-purple">02 / Visibility</span>
+          <h3 class="grad-purple">Get found by AI.</h3>
+          <div class="service-underline ul-purple"></div>
+          <p>When someone asks ChatGPT, Claude, or Google what you do, your business shows up by name.</p>
+          <div class="service-tags">
+            <span class="service-tag">llms.txt</span>
+            <span class="service-tag">Schema markup</span>
+            <span class="service-tag">Location pages</span>
+            <span class="service-tag">Markdown mirrors</span>
+            <span class="service-tag">Search Console</span>
+            <span class="service-tag">Ranking reports</span>
+          </div>
           <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="service-link">Get found by AI &rarr;</a>
         </div>
         <div class="service-card">
           <div class="service-icon si-pink">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
-          <h3>Custom Software + Internal Tools</h3>
-          <p>When off-the-shelf doesn't cut it. Custom dashboards, client portals, internal tools, and data pipelines designed around how your team actually works.</p>
-          <ul class="service-bullets">
-            <li>Client-facing portals and dashboards</li>
-            <li>Internal operations tools</li>
-            <li>Data pipelines and reporting systems</li>
-            <li>API integrations and middleware</li>
-            <li>HIPAA-compliant infrastructure</li>
-            <li>Full deployment and hosting</li>
-          </ul>
+          <span class="service-eyebrow eb-pink">03 / Software</span>
+          <h3 class="grad-pink">Build what you can&rsquo;t buy.</h3>
+          <div class="service-underline ul-pink"></div>
+          <p>When off-the-shelf doesn&rsquo;t cut it &mdash; built around how your team actually works.</p>
+          <div class="service-tags">
+            <span class="service-tag">Client portals</span>
+            <span class="service-tag">Internal tools</span>
+            <span class="service-tag">Data pipelines</span>
+            <span class="service-tag">API integrations</span>
+            <span class="service-tag">HIPAA infra</span>
+            <span class="service-tag">Hosting</span>
+          </div>
           <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="service-link">Scope your build &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTS -->
+  <section class="results" id="results">
+    <div class="container">
+      <div class="results-header fade-up">
+        <p class="section-label">Results</p>
+        <h2 class="section-title">Numbers from <span class="dim">real builds.</span></h2>
+      </div>
+      <div class="results-grid fade-up">
+        <div class="result-card">
+          <div class="result-metric blue">+40%</div>
+          <h3>Returning customers</h3>
+          <p>Replies handled around the clock. Patients who text after hours don&rsquo;t fall off &mdash; they get a response, get the booking link, and book.<span class="result-source">Acuity Eye Care &middot; Salem, NH</span></p>
+        </div>
+        <div class="result-card">
+          <div class="metric-stack">
+            <div class="metric-row">
+              <div class="result-metric gold">+30%</div>
+              <span class="metric-label">more Google reviews</span>
+            </div>
+            <div class="metric-row">
+              <div class="result-metric money">$15K+</div>
+              <span class="metric-label">in new revenue</span>
+            </div>
+          </div>
+          <p>In the first 30 days. Automated review requests after every completed job &mdash; no manual asks.<span class="result-source">Legendary Plumbing &amp; Heating &middot; Hooksett, NH</span></p>
+        </div>
+        <div class="result-card">
+          <div class="result-metric money">$14,000+</div>
+          <h3>In annual labor savings</h3>
+          <p>585 hours of manual invoice entry eliminated per year. At $18&ndash;30/hr, the system pays for itself within the first few weeks of summer.<span class="result-source">Summer Sessions Surf Shop &middot; Rye, NH</span></p>
         </div>
       </div>
     </div>
@@ -2296,33 +2499,6 @@
     </div>
   </section>
 
-  <!-- RESULTS -->
-  <section class="results" id="results">
-    <div class="container">
-      <div class="results-header fade-up">
-        <p class="section-label">Results</p>
-        <h2 class="section-title">Numbers from <span class="dim">real builds.</span></h2>
-      </div>
-      <div class="results-grid fade-up">
-        <div class="result-card">
-          <div class="result-metric">&lt;2 min</div>
-          <h3>Average lead response time</h3>
-          <p>Down from 4+ hours. Every inquiry gets a personalized response before the prospect moves on.</p>
-        </div>
-        <div class="result-card">
-          <div class="result-metric">4.1 &rarr; 4.8</div>
-          <h3>Google rating in 3 months</h3>
-          <p>Automated review requests after every completed service. No manual asks.</p>
-        </div>
-        <div class="result-card">
-          <div class="result-metric">1,400%</div>
-          <h3>Traffic increase in 2 weeks</h3>
-          <p>AI visibility system took a business from 7 daily visitors to 150. Page one of Google within weeks.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- TESTIMONIALS -->
   <section class="testimonials">
     <div class="container">
@@ -2500,13 +2676,14 @@
         </a>
         <a href="#services" class="btn-ghost">See what we build</a>
       </div>
+      <p class="fade-up" style="margin-top:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.7">HIPAA Compliant &middot; US-Based &middot; Full Deployment Included</p>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-inner">
-      <div class="footer-left">&copy; 2026 Grey Shore Systems LLC &middot; greyshoresystems.com &middot; (603) 339-2792</div>
+      <div class="footer-left">&copy; 2026 Grey Shore Systems LLC &middot; greyshoresystems.com &middot; (603) 339-2792 &middot; HIPAA Compliant</div>
       <div class="footer-right">
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
