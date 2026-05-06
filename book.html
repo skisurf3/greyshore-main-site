@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Free Audit | Grey Shore Systems</title>
+  <meta name="description" content="30 minutes with Grey Shore. Walk away with a complete plan within 24 hours and a build ready to start within 48.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #000000;
+      --surface: #0a0a0b;
+      --surface-2: #0f0f12;
+      --border: #1f1f24;
+      --border-soft: #14141a;
+      --text: #ffffff;
+      --text-secondary: #d4d4d8;
+      --text-muted: #a1a1aa;
+      --text-dim: #71717a;
+      --accent: #4fd1c5;
+      --accent-glow: rgba(79, 209, 197, 0.2);
+      --font-body: 'DM Sans', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--black);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -10%;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 45% at 15% 10%, rgba(147, 51, 234, 0.32), transparent 65%),
+        radial-gradient(ellipse 45% 40% at 92% 18%, rgba(251, 191, 36, 0.18), transparent 65%),
+        radial-gradient(ellipse 50% 40% at 88% 55%, rgba(236, 72, 153, 0.28), transparent 65%),
+        radial-gradient(ellipse 48% 38% at 10% 68%, rgba(14, 165, 233, 0.22), transparent 65%),
+        radial-gradient(ellipse 45% 35% at 55% 92%, rgba(79, 209, 197, 0.18), transparent 65%);
+      filter: blur(40px);
+      animation: ambientDrift 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-2%, 2%) scale(1.05); }
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* NAV (matches index) */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 0; transition: all 0.3s ease;
+      backdrop-filter: blur(0px); border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      backdrop-filter: blur(20px);
+      background: rgba(0, 0, 0, 0.6);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { font-weight: 700; font-size: 17px; letter-spacing: -0.01em; color: var(--text); }
+    .nav-center { display: flex; gap: 32px; }
+    .nav-item {
+      font-size: 14px; font-weight: 500; color: var(--text-muted);
+      transition: color 0.2s; display: inline-flex; align-items: center; gap: 4px;
+    }
+    .nav-item:hover { color: var(--text); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 18px; background: var(--text); color: var(--black);
+      border-radius: 9999px; font-size: 14px; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent); transform: translateY(-1px); }
+    .nav-hamburger { display: none; }
+
+    @media (max-width: 768px) {
+      .nav-center, .nav-right { display: none; }
+      .nav-hamburger { display: block; }
+      .nav-hamburger svg { color: var(--text); }
+    }
+
+    /* HERO */
+    .book-hero {
+      padding: 160px 0 40px;
+      text-align: center;
+      position: relative;
+    }
+    .book-hero .eyebrow {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      background: rgba(79, 209, 197, 0.08);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+    .book-hero h1 {
+      font-size: clamp(44px, 6vw, 76px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .book-hero h1 .accent {
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .book-hero p.lede {
+      max-width: 640px;
+      margin: 0 auto;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* MAIN GRID */
+    .book-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px 0;
+    }
+    @media (max-width: 960px) {
+      .book-grid { grid-template-columns: 1fr; }
+    }
+
+    /* CALENDLY PANEL */
+    .calendly-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 12px;
+      overflow: hidden;
+    }
+    .calendly-inline-widget {
+      min-width: 320px;
+      height: 720px;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* RIGHT COLUMN PANELS */
+    .side-stack { display: grid; gap: 20px; align-content: start; }
+
+    .side-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+    .side-card h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+    }
+    .side-card ul { list-style: none; display: grid; gap: 14px; }
+    .side-card ul li {
+      position: relative;
+      padding-left: 28px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .side-card ul li::before {
+      content: "✓";
+      position: absolute; left: 0; top: 0;
+      color: var(--accent); font-weight: 700;
+    }
+
+    /* STAT GRID */
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .stat-grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .stat-grid-3 .stat-num { font-size: 22px; }
+    @media (max-width: 520px) {
+      .stat-grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+    .stat-num.stat-green {
+      background: none;
+      -webkit-text-fill-color: #4ade80;
+      color: #4ade80;
+    }
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 20px;
+    }
+    .stat-num {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* TESTIMONIAL MINI */
+    .mini-test {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .mini-test blockquote {
+      color: var(--text-secondary);
+      font-size: 0.93rem;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+    .mini-test-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+    .mini-test-name { color: var(--text-muted); }
+    .mini-test-chip {
+      color: var(--accent);
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      font-weight: 700;
+    }
+
+    /* QUALIFIER STRIP */
+    .qualifier-strip {
+      max-width: 760px;
+      margin: 64px auto 0;
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-style: italic;
+      border-top: 1px solid var(--border);
+    }
+
+    /* FOOTER */
+    .footer { border-top: 1px solid var(--border); padding: 48px 24px; margin-top: 64px; }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+      font-size: 0.85rem; color: var(--text-muted);
+    }
+    .footer-right { display: flex; gap: 26px; }
+    .footer-right a { color: var(--text-muted); transition: color 0.2s; }
+    .footer-right a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Grey Shore Systems</a>
+      <div class="nav-center">
+        <a href="/#services" class="nav-item">Services</a>
+        <a href="/#how" class="nav-item">Process</a>
+        <a href="/#results" class="nav-item">Results</a>
+        <a href="/#faq" class="nav-item">FAQ</a>
+      </div>
+      <div class="nav-right">
+        <a href="#calendar" class="nav-cta">Pick a Time</a>
+      </div>
+      <button class="nav-hamburger" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="book-hero">
+    <div class="container">
+      <span class="eyebrow">Free · 30 Minutes · No Pitch</span>
+      <h1>Book Your Free<br><span class="accent">30-Minute Audit.</span></h1>
+      <p class="lede">30 minutes with Wilson. You'll walk away with the exact bottleneck costing you the most — and a complete plan delivered within 24 hours, with a build ready to start within 48.</p>
+    </div>
+  </section>
+
+  <!-- MAIN GRID -->
+  <div class="book-grid" id="calendar">
+    <!-- LEFT: CALENDLY -->
+    <div class="calendly-panel">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/wilson-greyshoresystems/30min?hide_event_type_details=0&background_color=0a0a0b&text_color=ffffff&primary_color=4fd1c5"></div>
+    </div>
+
+    <!-- RIGHT: PANELS -->
+    <div class="side-stack">
+      <div class="side-card">
+        <h2>What's on the call</h2>
+        <ul>
+          <li>Audit of where leads, time, and revenue are leaking right now.</li>
+          <li>The specific automation, AI search, or system that fixes the biggest gap.</li>
+          <li>A straight answer on timeline and investment — no slides, no pitch.</li>
+          <li>Not a fit? We'll tell you and point you somewhere that is.</li>
+        </ul>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">30 min</div>
+          <div class="stat-label">Length</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num stat-green">$0</div>
+          <div class="stat-label">Cost</div>
+        </div>
+      </div>
+
+      <div class="stat-grid stat-grid-3">
+        <div class="stat-card">
+          <div class="stat-num">+12</div>
+          <div class="stat-label">New members / Month 1</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8 hrs</div>
+          <div class="stat-label">Labor saved / Week</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4.1 → 4.8</div>
+          <div class="stat-label">Google rating</div>
+        </div>
+      </div>
+
+      <div class="mini-test">
+        <blockquote>"Lost leads because nobody followed up fast. Audit found the gap. 3-week build. Now: response in minutes, +12 new members in month one."</blockquote>
+        <div class="mini-test-foot">
+          <span class="mini-test-name">Health + Fitness, MA</span>
+          <span class="mini-test-chip">+12 / Month 1</span>
+        </div>
+      </div>
+
+      <div class="mini-test">
+        <blockquote>"Onboarding automation went live in 2 weeks. 8 hours back per week. Every new client gets the same experience without our team thinking about it."</blockquote>
+        <div class="mini-test-foot">
+          <span class="mini-test-name">Professional Services, NH</span>
+          <span class="mini-test-chip">8 hrs / Week</span>
+        </div>
+      </div>
+
+      <div class="mini-test">
+        <blockquote>"Review system runs itself after every job. 4.1 → 4.8 on Google in 3 months. We never ask a customer."</blockquote>
+        <div class="mini-test-foot">
+          <span class="mini-test-name">Skilled Trades, Northeast</span>
+          <span class="mini-test-chip">4.1 → 4.8 / 90 days</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="qualifier-strip">No hard sell. If your business isn't a fit for what we build, Wilson will tell you straight and point you somewhere that is.</p>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>&copy; 2026 Grey Shore Systems LLC &middot; greyshoresystems.com &middot; (603) 339-2792 &middot; HIPAA Compliant</div>
+      <div class="footer-right">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="mailto:wilson@greyshoresystems.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Calendly embed script -->
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+  <script>
+    var nav = document.querySelector('.nav');
+    function updateNav() {
+      if (window.scrollY > 40) nav.classList.add('scrolled');
+      else nav.classList.remove('scrolled');
+    }
+    updateNav();
+    window.addEventListener('scroll', updateNav, { passive: true });
+  </script>
+</body>
+</html>

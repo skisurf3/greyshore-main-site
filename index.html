@@ -1880,7 +1880,52 @@
 
     .final-cta .section-title { margin-bottom: 18px; }
 
-    .final-cta .section-sub { margin: 0 auto 40px; }
+    .final-cta .section-sub { margin: 0 auto 28px; }
+
+    .final-cta-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0 auto 36px;
+      max-width: 560px;
+      text-align: left;
+      display: grid;
+      gap: 12px;
+    }
+    .final-cta-bullets li {
+      position: relative;
+      padding-left: 28px;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .final-cta-bullets li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .final-cta-qualifier {
+      margin: 18px auto 0;
+      max-width: 520px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .why-now {
+      text-align: center;
+      padding: 32px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .why-now strong { color: var(--text); font-weight: 600; }
 
     /* ══════════════ FOOTER ══════════════ */
     .footer {
@@ -2080,7 +2125,7 @@
         <a href="#faq" class="nav-item">FAQ</a>
       </div>
       <div class="nav-right">
-        <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="nav-cta">Book a Free Audit</a>
+        <a href="/book.html" class="nav-cta">Book a Free Audit</a>
       </div>
       <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.add('open')" aria-label="Menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -2113,7 +2158,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
-    <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="btn-white nav-mobile-cta" style="justify-content:center">
+    <a href="/book.html" class="btn-white nav-mobile-cta" style="justify-content:center">
       Book a Free Audit
       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
     </a>
@@ -2133,7 +2178,7 @@
         <h1 class="hero-title">Stop running your business <span class="dim">manually.</span></h1>
         <p class="hero-sub">We build AI systems, automated operations, and custom software. Designed around how you actually work.</p>
         <div class="hero-ctas">
-          <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="btn-white">
+          <a href="/book.html" class="btn-white">
             Book a Free 30-Minute Audit
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
           </a>
@@ -2312,7 +2357,7 @@
             <span class="service-tag">Review systems</span>
             <span class="service-tag">Dashboards</span>
           </div>
-          <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="service-link">Talk about your operations &rarr;</a>
+          <a href="/book.html" class="service-link">Talk about your operations &rarr;</a>
         </div>
         <div class="service-card">
           <div class="service-icon si-purple">
@@ -2330,7 +2375,7 @@
             <span class="service-tag">Search Console</span>
             <span class="service-tag">Ranking reports</span>
           </div>
-          <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="service-link">Get found by AI &rarr;</a>
+          <a href="/book.html" class="service-link">Get found by AI &rarr;</a>
         </div>
         <div class="service-card">
           <div class="service-icon si-pink">
@@ -2348,7 +2393,7 @@
             <span class="service-tag">HIPAA infra</span>
             <span class="service-tag">Hosting</span>
           </div>
-          <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="service-link">Scope your build &rarr;</a>
+          <a href="/book.html" class="service-link">Scope your build &rarr;</a>
         </div>
       </div>
     </div>
@@ -2603,7 +2648,7 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
           </div>
-          <blockquote>"We were losing leads because nobody followed up fast enough. Now every inquiry gets a response in minutes. Picked up 12 new members the first month without changing anything else."</blockquote>
+          <blockquote>"Lost leads because nobody followed up fast. Audit found the gap. 3-week build. Now: response in minutes, +12 new members in month one."</blockquote>
           <div class="testimonial-author">
             <div class="testimonial-avatar">JW</div>
             <div>
@@ -2620,7 +2665,7 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
           </div>
-          <blockquote>"The onboarding automation alone saved us 8 hours a week. New clients get the same experience every time and our team doesn't have to think about it."</blockquote>
+          <blockquote>"Onboarding automation went live in 2 weeks. 8 hours back per week. Every new client gets the same experience without our team thinking about it."</blockquote>
           <div class="testimonial-author">
             <div class="testimonial-avatar">AM</div>
             <div>
@@ -2637,7 +2682,7 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
           </div>
-          <blockquote>"Our Google rating went from 4.1 to 4.8 in three months. The review system runs after every job. We never ask a single customer."</blockquote>
+          <blockquote>"Review system runs itself after every job. 4.1 → 4.8 on Google in 3 months. We never ask a customer."</blockquote>
           <div class="testimonial-author">
             <div class="testimonial-avatar">TP</div>
             <div>
@@ -2654,7 +2699,7 @@
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
             <svg viewBox="0 0 24 24"><path d="M12 2l2.09 6.26L20 9.27l-4.91 3.82L16.18 20 12 16.77 7.82 20l1.09-6.91L4 9.27l5.91-1.01L12 2z"/></svg>
           </div>
-          <blockquote>"25 years in business and zero automation. They came in, learned our entire operation, and built systems I didn't know were possible."</blockquote>
+          <blockquote>"25 years, zero automation. They learned the operation in week one and shipped systems I didn't know were possible."</blockquote>
           <div class="testimonial-author">
             <div class="testimonial-avatar">CW</div>
             <div>
@@ -2752,19 +2797,30 @@
   </section>
 
   <!-- FINAL CTA -->
+  <!-- WHY NOW -->
+  <div class="why-now fade-up">
+    <strong>Most clients see measurable results in 30 days.</strong> Audit Monday → diagnosis Friday → build starts the following week.
+  </div>
+
   <section class="final-cta">
     <div class="bg-noise"></div>
     <div class="final-cta-inner">
       <h2 class="section-title fade-up">Ready to see <span class="dim">what's costing you?</span></h2>
       <p class="section-sub fade-up">30-minute audit. No slides. No pressure.</p>
+      <ul class="final-cta-bullets fade-up">
+        <li>Your biggest operational bottleneck — named.</li>
+        <li>The specific automation that fixes it.</li>
+        <li>Timeline and investment for the build.</li>
+      </ul>
       <div class="fade-up" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-        <a href="https://calendly.com/wilson-greyshoresystems/30min" target="_blank" class="btn-white">
+        <a href="/book.html" class="btn-white">
           Book a Free 30-Minute Audit
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
         </a>
         <a href="#services" class="btn-ghost">See what we build</a>
       </div>
-      <p class="fade-up" style="margin-top:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.7">HIPAA Compliant &middot; US-Based &middot; Full Deployment Included</p>
+      <p class="final-cta-qualifier fade-up">Not a fit? We'll tell you straight and point you somewhere that is.</p>
+      <p class="fade-up" style="margin-top:24px;font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;opacity:0.7">HIPAA Compliant &middot; US-Based &middot; Full Deployment Included &middot; &lt;2 min response</p>
     </div>
   </section>
 
